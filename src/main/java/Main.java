@@ -1,5 +1,9 @@
 public class Main {
+    private static String filename = "prospects.txt";
+
     public static void main(String[] args) {
-        System.out.println("Compilation completed. Hello world!");
+        Reader reader = new Reader(filename);
+        MortageCalculator calculator = new MortageCalculator(reader);
+        calculator.printMonthlyPayment();
     }
 }
