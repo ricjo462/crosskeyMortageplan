@@ -2,8 +2,10 @@ public class Main {
     private static String filename = "prospects.txt";
 
     public static void main(String[] args) {
-        Reader reader = new Reader(filename);
-        MortageCalculator calculator = new MortageCalculator(reader);
-        calculator.printMonthlyPayment();
+        CustomerList customerList = new CustomerList();
+        Reader reader = new Reader();
+        reader.read(filename);
+        new MortageCalculator(reader);
+        customerList.printMonthlyPayment();
     }
 }

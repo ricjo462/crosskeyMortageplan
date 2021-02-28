@@ -2,17 +2,15 @@ import java.util.ArrayList;
 
 public class MortageCalculator {
     Reader reader;
-    ArrayList<Customer> customerList;
 
     public MortageCalculator(Reader reader){
         this.reader = reader;
-        customerList = reader.getCustomerList();
         mortageCalculator();
     }
 
 
     /**
-     * Calculates the monthly payments and saves the data into Customer class
+     * Calculates the monthly payments and saves the data into the Customer list
      */
     private void mortageCalculator(){
         double E; // fixed monthly payment
@@ -20,7 +18,7 @@ public class MortageCalculator {
         double U; // total loan
         double p; // number of payments
 
-        for (Customer customer : customerList){
+        for (Customer customer : CustomerList.getCustomerList()){
             b = customer.getInterest()/12.0;
             U = customer.getTotalLoan();
             p = customer.getYears()*12.0;
@@ -65,21 +63,4 @@ public class MortageCalculator {
         return ((double)(int)(x * 100 + 0.5)) / 100;
     }
 
-    /**
-     * Prints the name, total loan, loan period and monthly payment of all customers in Customer
-     */
-    public void printMonthlyPayment(){
-        int prospectNr = 0;
-
-        System.out.println("***************************************************************" +
-                "*************************************");
-        for(Customer customer : customerList){
-            prospectNr++;
-            System.out.println("Prospect " + prospectNr + ": " + customer.name +
-                    " wants to borrow " + customer.totalLoan + "€ for a period of " + (int)customer.years +
-                    " years and pay " + customer.monthlyPayment + "€ each month");
-            System.out.println("***************************************************************" +
-                    "*************************************");
-        }
-    }
 }

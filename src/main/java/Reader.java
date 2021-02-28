@@ -1,83 +1,85 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Reader {
-    private static ArrayList<Customer> customerList;
-
-    public Reader(String filename){
-        customerList = new ArrayList<>();
-        reader(filename);
-    }
-
-    public ArrayList<Customer> getCustomerList() {
-        return customerList;
-    }
 
     /**
-     * Reads a file and saves the data into Customer class
+     * Reads a file and saves the data into the Customer list
      * @param prospectsFileName name of the file to be read
      */
-    private void reader(String prospectsFileName){
-        String name = "";
-        double totalLoan;
-        double interest;
-        int years;
+    public void read(String prospectsFileName){
+        String line;
+        String longName = "";
+        String[] prospect;
+        File prospects = null;
+
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            //TODO fix probable nullpointerexception from getfile()
-            File prospects = new File(classLoader.getResource(prospectsFileName).getFile());
+            prospects = new File(classLoader.getResource(prospectsFileName).getFile());
+
+        } catch(NullPointerException e) {
+            System.out.println("No prospects file found in: " + prospectsFileName);
+            e.printStackTrace();
+        }
+
+        try {
             Scanner scanner = new Scanner(prospects);
             scanner.useDelimiter(",");
-            String line;
+
+            // Don't want to save the header, so just skip the first row
+            scanner.nextLine();
 
             while(!(line = scanner.nextLine()).equals("")) {
-                int prospectIndex = 0;
-                String[] prospect;
                 // If the name is sorrounded by ""
-                if (line.contains("\"")){
+                if (line.contains("\"")) {
                     Pattern p = Pattern.compile(".*\"(.*)\"(.*)");
                     Matcher m = p.matcher(line);
-                    // TODO fix the splitting
                     if (m.matches()) {
-                        name = m.group(1);
-                        prospect = name.split(",");
-                        name = "";
-                        for(String names : prospect)
-                            name += names + " ";
-                        //System.out.println("Name: " + name);
+                        longName = m.group(1).replace(",", " ");
                         line = m.group(2);
-                        //System.out.println("line: " + line);
-                        prospectIndex++;
                     }
                 }
                 prospect = line.split(",");
-
-
-                //TODO loop
-                try {
-                    if (prospectIndex == 0)
-                        name = prospect[prospectIndex++];
-                    totalLoan = Double.parseDouble(prospect[prospectIndex++]);
-                    interest = 0.01 * Double.parseDouble(prospect[prospectIndex++]);
-                    years = Integer.parseInt(prospect[prospectIndex]);
-
-                    // Save to customer
-                    Customer customer = new Customer(name, totalLoan, interest, years);
-                    customerList.add(customer);
-
-                } catch (NumberFormatException e) {
-                    //TODO fix empty catch
-                    //e.printStackTrace();
-                }
-
+                saver(prospect, longName);
             }
+
         } catch(FileNotFoundException e) {
             System.out.println("No prospects file found in: " + prospectsFileName);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Saves a prospect into the Customer list
+     * @param prospect array of Customer,Total loan,Interest and Years, to be saved into Customer list
+     * @param longName used if the prospect has a name like "Firstname,Lastname"
+     */
+    private void saver(String[] prospect, String longName) {
+        String name;
+        int index = 0;
+
+        try {
+            if (longName.isEmpty()) {
+                name = prospect[index++];
+            } else {
+                name = longName;
+                index++;
+            }
+            double totalLoan = Double.parseDouble(prospect[index++]);
+            double interest = 0.01 * Double.parseDouble(prospect[index++]);
+            int years = Integer.parseInt(prospect[index]);
+
+            // Save to customer
+            Customer customer = new Customer(name, totalLoan, interest, years);
+            CustomerList.add(customer);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong format on prospects.txt. Needs to be like 'Customer,Total loan,Interest,Years' on each row.");
+            e.printStackTrace();
+        }
+
     }
 }
