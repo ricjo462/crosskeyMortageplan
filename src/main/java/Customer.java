@@ -27,8 +27,4 @@ public class Customer {
     public double getYears() {
         return this.years;
     }
-
-    public double getMonthlyPayment() {
-        return this.monthlyPayment;
-    }
 }
