@@ -17,8 +17,7 @@ public class Reader {
         File prospects = null;
 
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            prospects = new File(classLoader.getResource(prospectsFileName).getFile());
+            prospects = new File(getClass().getClassLoader().getResource(prospectsFileName).getFile());
 
         } catch(NullPointerException e) {
             System.out.println("No prospects file found in: " + prospectsFileName);
