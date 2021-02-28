@@ -5,7 +5,7 @@ public class Main {
         CustomerList customerList = new CustomerList();
         Reader reader = new Reader();
         reader.read(filename);
-        new MortageCalculator(reader);
+        new MortageCalculator();
         customerList.printMonthlyPayment();
     }
 }
