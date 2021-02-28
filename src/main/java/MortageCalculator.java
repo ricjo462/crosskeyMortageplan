@@ -1,10 +1,6 @@
-import java.util.ArrayList;
-
 public class MortageCalculator {
-    Reader reader;
 
-    public MortageCalculator(Reader reader){
-        this.reader = reader;
+    public MortageCalculator(){
         mortageCalculator();
     }
 
@@ -12,7 +8,7 @@ public class MortageCalculator {
     /**
      * Calculates the monthly payments and saves the data into the Customer list
      */
-    private void mortageCalculator(){
+    public void mortageCalculator(){
         double E; // fixed monthly payment
         double b; // interest on a monthly basis
         double U; // total loan
@@ -32,7 +28,7 @@ public class MortageCalculator {
      * To be used if the exponent is a double
      * @return the value of powerOf(double,int)
      */
-    private static double powerOf(double base, double exponent){
+    public static double powerOf(double base, double exponent){
         int exp = (int) exponent;
         return powerOf(base, exp);
     }
@@ -43,7 +39,7 @@ public class MortageCalculator {
      * @param exponent the integer to raise the base to
      * @return the base to the power of the exponent
      */
-    private static double powerOf(double base, int exponent) {
+    public static double powerOf(double base, int exponent) {
         double answer = 1;
         if (base == 0){
             return answer;
@@ -59,7 +55,7 @@ public class MortageCalculator {
      * @param x the decimal number to be rounded
      * @return a double rounded to two decimal places
      */
-    private static double round(double x) {
+    public static double round(double x) {
         return ((double)(int)(x * 100 + 0.5)) / 100;
     }
 
