@@ -4,8 +4,10 @@ public class Main {
     public static void main(String[] args) {
         CustomerList customerList = new CustomerList();
         Reader reader = new Reader();
+        MortageCalculator mortageCalculator = new MortageCalculator();
+
         reader.read(filename);
-        new MortageCalculator();
+        mortageCalculator.calculate();
         customerList.printMonthlyPayment();
     }
 }

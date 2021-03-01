@@ -13,7 +13,7 @@ public final class MortageCalculatorTest {
         c = new Customer("MrTest", 1000, 0.05, 2);
         cl.add(c);
         mc = new MortageCalculator();
-        mc.mortageCalculator();
+        mc.calculate();
         assertEquals(43.87, c.monthlyPayment);
     }
 
