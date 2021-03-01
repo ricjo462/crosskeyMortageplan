@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MortageCalculatorTest {
+public final class MortageCalculatorTest {
     CustomerList cl;
     Customer c;
     MortageCalculator mc;

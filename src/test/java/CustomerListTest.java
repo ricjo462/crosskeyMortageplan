@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerListTest {
+public final class CustomerListTest {
     CustomerList cl;
     Customer c;
     MortageCalculator mc;

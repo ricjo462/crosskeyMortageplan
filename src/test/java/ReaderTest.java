@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReaderTest {
+public final class ReaderTest {
     Reader reader = new Reader();
     PrintStream standardOut = System.out;
     ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
