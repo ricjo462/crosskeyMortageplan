@@ -1,14 +1,9 @@
 public class MortageCalculator {
 
-    public MortageCalculator(){
-        mortageCalculator();
-    }
-
-
     /**
      * Calculates the monthly payments and saves the data into the Customer list
      */
-    public void mortageCalculator(){
+    public void calculate(){
         double E; // fixed monthly payment
         double b; // interest on a monthly basis
         double U; // total loan
