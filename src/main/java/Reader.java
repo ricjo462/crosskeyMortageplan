@@ -44,6 +44,9 @@ public class Reader {
                 }
                 prospect = line.split(",");
                 saver(prospect, longName);
+                if (!(longName.equals(""))){
+                    longName = "";
+                }
             }
 
         } catch(FileNotFoundException e) {
