@@ -11,17 +11,18 @@ public class Reader {
      * @param prospectsFileName name of the file to be read
      */
     public void read(String prospectsFileName){
+        String path;
         String line;
         String longName = "";
         String[] prospect;
         File prospects = null;
 
         try {
-            prospects = new File(getClass().getClassLoader().getResource(prospectsFileName).getFile());
+            path = getClass().getClassLoader().getResource(prospectsFileName).getFile();
+            prospects = new File(path);
 
         } catch(NullPointerException e) {
-            System.out.println("No prospects file found in: " + prospectsFileName);
-            e.printStackTrace();
+            System.out.println("No prospects file found named: " + prospectsFileName);
         }
 
         try {
@@ -46,8 +47,7 @@ public class Reader {
             }
 
         } catch(FileNotFoundException e) {
-            System.out.println("No prospects file found in: " + prospectsFileName);
-            e.printStackTrace();
+            System.out.println("No prospects file found named: " + prospectsFileName);
         }
     }
 

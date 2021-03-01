@@ -25,8 +25,8 @@ public class MortageCalculator {
     }
 
     /**
-     * To be used if the exponent is a double
-     * @return the value of powerOf(double,int)
+     * Exponential calculator with an exponent that is a double
+     * @return the base to the power of exponent
      */
     public static double powerOf(double base, double exponent){
         int exp = (int) exponent;
@@ -34,7 +34,7 @@ public class MortageCalculator {
     }
 
     /**
-     * My implementation of an exponential multiplication
+     * My implementation of an exponential multiplication calculator
      * @param base the double to be raised
      * @param exponent the integer to raise the base to
      * @return the base to the power of the exponent
