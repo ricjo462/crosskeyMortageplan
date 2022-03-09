@@ -25,7 +25,7 @@ public final class MortageCalculatorTest {
     }
 
     @Test
-    public void round() {
+    public void testRound() {
         assertEquals(10.0, mc.round(9.999));
         assertEquals(1.34, mc.round(1.337));
     }
